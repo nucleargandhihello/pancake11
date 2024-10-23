@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NuclearGandhi</title>
+    <style>
+    	#discord-profile {
+    text-align: center;
+    padding: 20px;
+}
+
+
+.profile-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f1e3;
+    border: 1px solid #5c4033;
+    padding: 20px;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    max-width: 700px;
+    margin: auto;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 3px solid #5c4033;
+}
+
+.profile-info {
+    text-align: left;
+}
+
+.profile-info h3 {
+    margin: 0;
+    color: #5c4033;
+}
+
+.profile-info p {
+    margin: 10px 0;
+    color: #333;
+}
+
+.profile-info .btn {
+    margin-top: 10px;
+    background-color: #7289da;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-info .btn:hover {
+    background-color: #5c5fb3;
+}
+#pixelCounter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+@keyframes wave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+    	html {
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+        html, body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(270deg, #f8d9e0, #d9f8e6, #e0f1f8, #f8e5d9);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+             background-size: 800% 800%;
+            animation: wave 15s ease infinite;
+            
+            
+            height: 100vh;
+        }
+
+        header {
+            background-color: #5c4033;
+            color: #f4f1e3;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+
+        nav {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #f4f1e3;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #d0b183;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: auto;
+        }
+
+        section {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f4f1e3;
+            border: 1px solid #5c4033;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        section h2 {
+            color: #5c4033;
+            border-bottom: 2px solid #5c4033;
+            padding-bottom: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #5c4033;
+            color: #f4f1e3;
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: #f4f1e3;
+            text-decoration: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #f4f1e3;
+            background-color: #5c4033;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, transform 0.2s;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #3e2a24;
+            transform: translateY(-2px);
+        }
+
+        .book-cover {
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .book-cover img {
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .book-cover img:hover {
+            transform: scale(1.05);
+        }
+
+        .book-slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        .book-slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quote-slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .quote-slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.4); 
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+            max-width: 600px;
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .slideshow-container {
+    position: relative;
+    max-width: 900px;
+    margin: auto;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.mySlides {
+    display: none;
+}
+
+img {
+    border-radius: 8px;
+}
+#progressBar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 5px;
+        background-color: #00aaff;
+        z-index: 99;
+        }
+
+        .tracker {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .progress-container {
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin: 15px 0;
+            height: 30px;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            background: #4caf50;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            line-height: 30px; /* Center text vertically */
+            transition: width 0.4s ease; /* Smooth transition */
+        }
+
+        .label {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            line-height: 30px; /* Center text vertically */
+        }
+   footer {
+            position: relative;
+            background-color: #f8f8f8;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-timeline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px; /* Space between timeline items */
+            padding: 20px 0;
+            position: relative;
+        }
+
+        /* Horizontal line connecting the items */
+        .footer-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background-color: #ddd;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            text-align: center;
+            z-index: 1; /* Bring the item above the connecting line */
+        }
+
+        .timeline-item h3 {
+            font-size: 16px;
+            color: white;
+            margin: 5px 0;
+        }
+
+        .timeline-item p {
+            font-size: 14px;
+            color: white;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            border: 2px solid #007BFF; /* Color of the marker */
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1; /* Bring the marker above the line */
+        }
+ svg {
+            border: 1px solid black;
+            background-color: black;
+            border-radius:20px;
+        }
+
+        circle {
+            fill: none;
+            stroke-width: 0.5;
+        }
+        
+    </style>
+<script defer data-domain="gandhi.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script><script type="text/javascript" src="https://tiiny.host/ad-script.js"></script><script defer data-domain="gandhi.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script><script type="text/javascript" src="https://tiiny.host/ad-script.js"></script><script defer data-domain="gandhi33.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script><script type="text/javascript" src="https://tiiny.host/ad-script.js"></script><script defer data-domain="gandhi.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script><script type="text/javascript" src="https://tiiny.host/ad-script.js"></script><script defer data-domain="nuclear.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script><script type="text/javascript" src="https://tiiny.host/ad-script.js"></script></head>
+<body>
+
+   
+
+    
+
+    <header>
+        <h1>NuclearGandhi</h1>
+        <nav>
+            <a href="#about">About Me</a>
+            <a href="#books">My Books</a>
+            <a href="#thoughts">Thoughts</a>
+            <a href="#quotes">Quotes</a>
+            <a href="#feedback">Feedback</a>
+            <hr>
+            <div id="progressBar"></div>
+            <div id="cursorFollower"></div>
+            <div id="greeting"></div>
+
+     
+            
+            
+        </nav>
+    </header>
+<section id="slideshow">
+    <h2>Gallery</h2>
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img src="book.jpeg"width="50%">
+        </div>
+        <div class="mySlides fade">
+            <img src="pen.jpeg"width="50%">
+        </div>
+        
+        
+    </div>
+</section>
+
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Welcome to my personal space. I'm NuclearGandhi, an author who enjoys exploring the depths of society, philosophy, and human nature through fiction. I don't claim to have answers, but I have questions. Each story I craft serves as a mirror, reflecting the complexities of existence.</p>
+            <a href="https://x.com/@NuclearGandhi_" class="btn">Twitter</a>
+<div class="tracker">
+<h2> stuff </h2>
+        <div class="progress-container">
+            <div class="progress" style="width: 40%;">Writing Book</div>
+            <div class="label"></div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress" style="width: 100%;">Enjoying Life</div>
+            <div class="label"></div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress" style="width: 60%;">Not Studying</div>
+            <div class="label"></div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress" style="width: 40%;">Learning</div>
+            <div class="label"></div>
+        </div>
+
+    </div>
+            <br>
+            <p> age: <span id="age"></span></p>
+            <div id="pixelCounter">Pixels to end: <span id="pixelsLeft"></span></div>
+            <p>Estimated Reading Time: <span id="readingTime"></span> minutes</p>
+            <br>
+            <h2>Chaos Theory Simulator (Lorenz Attractor)</h2>
+    <svg id="svgCanvas" width="600" height="600"></svg>
+
+        </section>
+     
+   
+
+        </div>
+    </div>
+</section>
+
+
+        <section id="books">
+            <h2>My Books</h2>
+
+            <div id="book-slider">
+                <!-- Shadow of the Architect -->
+                <div class="book-slide active">
+                    <div class="book-cover" onclick="showModal('shadow-info')">
+                        <img src="new cover.jpg" height="40%" width="40%" alt="Shadow of the Architect">
+                    </div>
+                </div>
+
+                <!-- Counting from 0 to 1 -->
+                <div class="book-slide">
+                    <div class="book-cover" onclick="showModal('counting-info')">
+                        <img src="counting from 0 to 1.png" height="40%" width="40%" alt="Counting from 0 to 1">
+                    </div>
+                </div>
+
+                <!-- The Book with No Words -->
+                <div class="book-slide">
+                    <div class="book-cover" onclick="showModal('no-words-info')">
+                        <img src="the repeating book.png" height="40%" width="40%" alt="The Book with No Words">
+                    </div>
+                </div>
+
+                <!-- The Time Loop -->
+                <div class="book-slide">
+                    <div class="book-cover" onclick="showModal('time-loop-info')">
+                        <img src="Pleasure .png" height="40%" width="40%" alt="The Time Loop">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button class="btn" onclick="prevBook()">Previous</button>
+            <button class="btn" onclick="nextBook()">Next</button>
+        </section>
+
+        <!-- Modal for Book Info -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div id="modal-text"></div>
+            </div>
+        </div>
+
+        <section id="thoughts">
+            <h2>My Thoughts</h2>
+            <p>We live in a world teetering on contradictions—mankind striving for progress while destroying the very foundation of its existence. Are we creators, or are we simply the architects of our own destruction?</p>
+        </section>
+
+        <section id="quotes">
+            <h2>Quotes</h2>
+            <div class="quote-slide active">
+                <p>"The only limit to our realization of tomorrow will be our doubts of today."</p>
+            </div>
+            <div class="quote-slide">
+                <p>"In the end, we will remember not the words of our enemies, but the silence of our friends."</p>
+            </div>
+            <div class="quote-slide">
+                <p>"Life is what happens when you're busy making other plans."</p>
+            </div>
+            <div class="quote-slide">
+                <p>"We are all architects of something; some of us build monuments, others, nightmares."</p>
+            </div>
+            <div class="quote-slide">
+                <p>"In the labyrinth of his mind, there was no light."</p>
+            </div>
+            <div class="quote-slide">
+                <p>"Morality is a tool—used to shape those who cannot see beyond it."</p>
+            </div>
+        </section>
+
+        <section id="feedback">
+            <h2>Feedback</h2>
+            <p>I'd love to hear your thoughts on my books, ideas, or even your philosophical musings. Feel free to reach out with your feedback or share your thoughts on anything I've written.</p>
+            <a href="mailto:nucleargandhi.contact@gmail.com" class="btn">Send Feedback</a><br>
+            
+        </section>
+       
+    </div>
+    
+
+
+    <footer class="footer">
+       <div class="footer-timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <h3>2006</h3>
+                <p>Born</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <h3>2015</h3>
+                <p>Chess Journey</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <h3>2018</h3>
+                <p>Interest in Physics</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <h3>2020</h3>
+                <p>First Book Published</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <h3>2021</h3>
+                <p>Second Book Released</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <h3>2022</h3>
+                <p>change</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <h3>2024</h3>
+                <p>Website Launched</p>
+           
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <h3>future</h3>
+                <p>need friends</p>
+           
+            </div>
+        </div>
+
+    </footer>
+   
+    <script>
+    const svg = document.getElementById("svgCanvas");
+        let x = 0.01, y = 0, z = 0;
+        const sigma = 10;
+        const rho = 28;
+        const beta = 8 / 3;
+        const dt = 0.01;
+
+        function createCircle(x, y, color) {
+            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttribute("cx", 300 + x * 10);
+            circle.setAttribute("cy", 300 - y * 10); // Invert y for SVG
+            circle.setAttribute("r", 0.5); // Small radius for points
+            circle.setAttribute("stroke", color);
+            svg.appendChild(circle);
+        }
+
+        function lorenz() {
+            const dx = sigma * (y - x) * dt;
+            const dy = (x * (rho - z) - y) * dt;
+            const dz = (x * y - beta * z) * dt;
+
+            x += dx;
+            y += dy;
+            z += dz;
+
+            const color = `hsl(${Math.abs(z) * 10}, 100%, 50%)`;
+            createCircle(x, y, color);
+        }
+
+        function startSimulation() {
+            setInterval(lorenz, 10);
+        }
+
+        startSimulation();
+    const hour = new Date().getHours();
+    const greetingElement = document.getElementById('greeting');
+
+    if (hour < 12) {
+        greetingElement.textContent = "Good morning!";
+    } else if (hour < 18) {
+        greetingElement.textContent = "Good afternoon!";
+    } else {
+        greetingElement.textContent = "Good evening!";
+    }
+     
+    const wordsPerMinute = 200;
+    const pageText = document.body.innerText;
+    const wordCount = pageText.split(/\s+/).length;
+    const estimatedTime = Math.ceil(wordCount / wordsPerMinute);
+    
+    document.getElementById('readingTime').textContent = estimatedTime;
+    const follower = document.getElementById('cursorFollower');
+    document.addEventListener('mousemove', (e) => {
+        follower.style.transform = `translate(${e.pageX}px, ${e.pageY}px)`;
+    });
+     function toggleTheme() {
+        const isDarkMode = document.getElementById('themeSwitch').checked;
+        if (isDarkMode) {
+            document.body.style.backgroundColor = '#333';
+            document.body.style.color = '#fff';
+        } else {
+            document.body.style.backgroundColor = '#fff';
+            document.body.style.color = '#000';
+        }
+    }
+    window.onscroll = function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / totalHeight) * 100;
+        document.getElementById("progressBar").style.width = progress + "%";
+    };
+    function updatePixelsLeft() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const totalHeight = document.documentElement.scrollHeight;
+            const pixelsLeft = totalHeight - (scrollTop + windowHeight);
+
+            document.getElementById('pixelsLeft').textContent = pixelsLeft > 0 ? pixelsLeft : 0;
+        }
+
+        window.addEventListener('scroll', updatePixelsLeft);
+        window.addEventListener('resize', updatePixelsLeft);
+
+        // Initial call to set the pixels left on page load
+        updatePixelsLeft();
+    	 
+    	 function calculateAge() {
+            const birthDate = new Date('2006-01-06T00:00:00');
+            const now = new Date();
+            const ageInMilliseconds = now - birthDate;
+            const ageInSeconds = Math.floor(ageInMilliseconds / 1000);
+
+            const years = Math.floor(ageInSeconds / (60 * 60 * 24 * 365));
+            const remainingSecondsAfterYears = ageInSeconds % (60 * 60 * 24 * 365);
+            const days = Math.floor(remainingSecondsAfterYears / (60 * 60 * 24));
+            const remainingSecondsAfterDays = remainingSecondsAfterYears % (60 * 60 * 24);
+            const hours = Math.floor(remainingSecondsAfterDays / (60 * 60));
+            const minutes = Math.floor((remainingSecondsAfterDays % (60 * 60)) / 60);
+            const seconds = remainingSecondsAfterDays % 60;
+
+            document.getElementById('age').textContent = `${years} years, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        }
+
+        setInterval(calculateAge, 1000);
+      // Hide the tiiny.host footer
+    window.onload = function() {
+        const tiinyFooter = document.querySelector('footer[data-domain="gandhi.tiiny.site"]'); // Adjust based on actual structure
+        if (tiinyFooter) {
+            tiinyFooter.style.display = 'none';
+        }
+    };
+    
+        // JavaScript for book slider functionality
+        let currentBookIndex = 0;
+        const books = document.querySelectorAll('.book-slide');
+
+        function showBook(index) {
+            books.forEach((book, i) => {
+                book.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextBook() {
+            currentBookIndex = (currentBookIndex + 1) % books.length;
+            showBook(currentBookIndex);
+        }
+
+        function prevBook() {
+            currentBookIndex = (currentBookIndex - 1 + books.length) % books.length;
+            showBook(currentBookIndex);
+        }
+
+        // Show Modal with Book Info
+        function showModal(infoId) {
+            const infoText = {
+                'shadow-info': `
+                    <strong>Title:</strong> Shadow of the Architect<br>
+                    <strong>Description:</strong> A disturbing journey into the mind of Alexander Graves, a man who will stop at nothing to reshape the world, no matter the cost. This dark narrative explores moral ambiguity, violence, and the human condition.<br>
+                    <strong>Genre:</strong> Psychological Thriller<br>
+                    <a href="https://www.shorturl.at/jKEZ3" class="btn">Read Now</a>
+                `,
+                'counting-info': `
+                    <strong>Title:</strong> Counting from 0 to 1<br>
+                    <strong>Description:</strong> A philosophical exploration of the impossibility of counting and its abstract implications. Rethink something as simple as counting, revealing the limitations of human perception and logic.<br>
+                    <strong>Genre:</strong> Philosophy<br>
+                    <a href="https://shorturl.at/KLWrq" class="btn">Read Now</a>
+                `,
+                'no-words-info': `
+                    <strong>Title:</strong> The Book with No Words<br>
+                    <strong>Description:</strong> An experimental narrative that defies convention, this story unfolds through its absence, forcing readers to create meaning and fill the void.<br>
+                    <strong>Genre:</strong> Experimental Fiction<br>
+                    <a href="https://shorturl.at/SqHOK" class="btn">Read Now</a>
+                `,
+                'time-loop-info': `
+                    <strong>Title:</strong> The Time Loop<br>
+                    <strong>Description:</strong> A unique reading experience where you find yourself returning to the same page repeatedly, blurring the lines between fiction and reality.<br>
+                    <strong>Genre:</strong> Sci-Fi/Fantasy<br>
+                    <a href="https://shorturl.at/Ju09H" class="btn">Read Now</a>
+                `
+            };
+            document.getElementById('modal-text').innerHTML = infoText[infoId];
+            document.getElementById('myModal').style.display = "block";
+        }
+        
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        let i;
+        const slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        slides[slideIndex - 1].style.display = "block";  
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+
+
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        // Event listener for closing the modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // JavaScript for quote slider functionality
+        let currentQuoteIndex = 0;
+        const quotes = document.querySelectorAll('.quote-slide');
+
+        function showQuote(index) {
+            quotes.forEach((quote, i) => {
+                quote.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextQuote() {
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            showQuote(currentQuoteIndex);
+        }
+
+        function prevQuote() {
+            currentQuoteIndex = (currentQuoteIndex - 1 + quotes.length) % quotes.length;
+            showQuote(currentQuoteIndex);
+        }
+
+        // Set an interval to automatically change quotes every 10 seconds
+        setInterval(nextQuote, 2000);
+        
+    </script>
+
+</body>
+</html>
